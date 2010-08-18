@@ -1,22 +1,21 @@
 <?php
 
 /**
- * Personas
- * 
- * @author john
+ * Libros
+ *  
+ * @author Administrador
  * @version 
  */
 
 require_once 'Zend/Db/Table/Abstract.php';
 
-class Model_DBTable_Personas extends Zend_Db_Table_Abstract {
+class Model_DBTable_Libros extends Zend_Db_Table_Abstract {
 	/**
 	 * The default table name 
 	 */
-	protected $_name = 'personas';
-	protected $_primary = 'id';
+	protected $_name = 'libros';
 	
-	public function obtenerPersona($id){
+	public function getLibro($id){
 		$id = (int)$id;
 		$row = $this->fetchRow('id = ' . $id);
 		if (!$row){
@@ -25,19 +24,17 @@ class Model_DBTable_Personas extends Zend_Db_Table_Abstract {
 		return $row->toArray();
 	}
 	
-	public function agregarPersona($nombre, $apellido, $rol){
-		$data = array('nombre' => $nombre, 'apellido' => $apellido, 'rol' => $rol);
+	public function addLibro($titulo, $autor){
+		$data = array('titulo' => $titulo, 'autor' => $autor,);
 		$this->insert($data);
 	}
 	
-	public function actualizarPersona($id, $titulo, $autor){
+	public function updateLibro($id, $titulo, $autor){
 		$data = array('titulo' => $titulo, 'autor' => $autor,);
 		$this->update($data, 'id = '. (int)$id);
 	}
 	
-	public function eliminarPersona($id){
+	public function deleteLibro($id){
 		$this->delete('id =' . (int)$id);
 	}	
-
 }
-
