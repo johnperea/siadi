@@ -5,33 +5,21 @@ class Form_Persona extends Zend_Form{
 		parent::__construct($options);
 		
 		$this->setName('persona');
-		$id = new Zend_Form_Element_Hidden('id');
-		$rolId = $form->getValue('id_rol');
-		$tipoId = $form->getValue('tipoId');
-		$nombre = $form->getValue('nombre');
-		$apellido = $form->getValue('apellido');
-		$sexo = $form->getValue('sexo');
-		$edad = $form->getValue('edad');
-		$direccion = $form->getValue('direcion');
-		$ciudad = $form->getValue('ciudad');
-		$telefono = $form->getValue('telefono');
-		$email = $form->getValue('email');
-		//Creamos el modelo
-		$Personas = new Model_DbTable_Personas();
-		//Insertamos el nuevo Persona en nuestra BBDD
-		$Personas->addPersona($rolId,	$tipoId, $nombre, $apellido, $sexo, $direccion, $ciudad , $telefono , $email) ;
 		
-		
-		
-		$rolId = new Zend_Form_Element_Text('Tipo_Rol');
-		$rolId->setLabel('Tipo de Autor')
+		$id = new Zend_Form_Element_Text('id');
+		$id->setLabel('Numero Identificacion')
 		->setRequired(true)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->addValidator('NotEmpty');
 		
-		$tipoId = new Zend_Form_Element_Text('tipoId');
-		$tipoId->setLabel('tipoId')
+		$tipoId = new Zend_Form_Element_Select('tipoId');
+		$tipoId->setLabel('Tipo de Identificacion')
+		->setmultioptions(array('Registro Civil' =>'RC', 'Tarjeta Identidad'=>'TI', 'Cedula Ciudadania'=>'CC', 'Cedula Extranjeria'=>'CE', 'Pasaporte'=>'PP'))
+		->setRequired(true);
+		
+		$rol = new Zend_Form_Element_Text('rol');
+		$rol->setLabel('Tipo de Usuario')
 		->setRequired(true)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
@@ -44,22 +32,29 @@ class Form_Persona extends Zend_Form{
 		->addFilter('StringTrim')
 		->addValidator('NotEmpty');
 		
-		$apellido = new Zend_Form_Element_Text('apellido');
-		$apellido->setLabel('apellido')
+		$apellidos = new Zend_Form_Element_Text('apellidos');
+		$apellidos->setLabel('apellidos')
 		->setRequired(true)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->addValidator('NotEmpty');
-		
+				
 		$sexo = new Zend_Form_Element_Text('sexo');
-		$sexo->setLabel('sexo')
+		$sexo->setLabel('Sexo')
 		->setRequired(true)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->addValidator('NotEmpty');
 		
-		$dirreccion = new Zend_Form_Element_Text('dirreccion');
-		$dirreccion->setLabel('dirreccion')
+		$edad = new Zend_Form_Element_Text('edad');
+		$edad->setLabel('Edad')
+		->setRequired(true)
+		->addFilter('StripTags')
+		->addFilter('StringTrim')
+		->addValidator('NotEmpty');
+		
+		$direccion = new Zend_Form_Element_Text('direccion');
+		$direccion->setLabel('direccion')
 		->setRequired(true)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
@@ -72,9 +67,40 @@ class Form_Persona extends Zend_Form{
 		->addFilter('StringTrim')
 		->addValidator('NotEmpty');
 		
+		$telefono = new Zend_Form_Element_Text('telefono');
+		$telefono->setLabel('telefono')
+		->setRequired(true)
+		->addFilter('StripTags')
+		->addFilter('StringTrim')
+		->addValidator('NotEmpty');
+		
+		$correo = new Zend_Form_Element_Text('correo');
+		$correo->setLabel('correo')
+		->setRequired(true)
+		->addFilter('StripTags')
+		->addFilter('StringTrim')
+		->addValidator('NotEmpty');
+		
+		$usuario = new Zend_Form_Element_Text('usuario');
+		$usuario->setLabel('usuario')
+		->setRequired(true)
+		->addFilter('StripTags')
+		->addFilter('StringTrim')
+		->addValidator('NotEmpty');
+		
+		$contrasena = new Zend_Form_Element_Text('contrasena');
+		$contrasena->setLabel('contrasena')
+		->setRequired(true)
+		->addFilter('StripTags')
+		->addFilter('StringTrim')
+		->addValidator('NotEmpty');
+		
 		$submit = new Zend_Form_Element_Submit('submit');
 		$submit->setAttrib('id', 'submitbutton');
-		$this->addElements(array($id, $autor, $dirreccion, $submit));
+		
+		$cancel = new Zend_Form_Element_Button('Cancel');
+		
+		$this->addElements(array($id, $tipoId, $rol, $nombre, $apellidos, $sexo, $edad, $direccion, $ciudad, $telefono, $correo, $usuario, $contrasena, $submit, $cancel));
 	}
 }
 ?>
