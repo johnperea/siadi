@@ -21,10 +21,11 @@ class Zend_View_Helper_header {
 	/**
 	 * 
 	 */
-	public function header() {
+	public function header( $base ) {
 		// TODO Auto-generated Zend_View_Helper_header::header() helper 
 		
-		echo "<h1>CABECERA</h1>";
+		echo "<img src='".$base."/image/bg_menu.gif'";
+		
 		return null;
 	}
 	

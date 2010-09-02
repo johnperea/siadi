@@ -25,17 +25,17 @@ class Model_DBTable_Personas extends Zend_Db_Table_Abstract {
 		return $row->toArray();
 	}
 	
-	public function agregarPersona($nombre, $apellido, $rol){
-		$data = array('nombre' => $nombre, 'apellido' => $apellido, 'rol' => $rol);
+	public function agregarPersona($id, $tipoId, $rol, $nombre, $apellidos, $sexo, $edad, $direccion, $ciudad , $telefono , $correo, $usuario, $contrasena ){
+		$data = array('id' => $id, 'tipoId' => $tipoId, 'rol' => $rol, 'nombre' => $nombre, 'apellidos' => $apellidos, 'sexo' => $sexo, 'edad' => $edad, 'direccion' => $direccion, 'ciudad' => $ciudad, 'telefono' => $telefono, 'correo' => $correo, 'usuario' => $usuario, 'contrasena' => $contrasena);
 		$this->insert($data);
 	}
 	
-	public function actualizarPersona($id, $titulo, $autor){
-		$data = array('titulo' => $titulo, 'autor' => $autor,);
+	public function editarPersona($id, $tipoId, $rol, $nombre, $apellidos, $sexo, $edad, $direccion, $ciudad, $telefono, $correo, $usuario, $contrasena){
+		$data = array('id' => $id, 'tipoId' => $tipoId, 'rol' => $rol, 'nombre' => $nombre, 'apellidos' => $apellidos, 'sexo' => $sexo, 'edad' => $edad, 'direccion' => $direccion, 'ciudad' => $ciudad, 'telefono' => $telefono, 'correo' => $correo, 'usuario' => $usuario, 'contrasena' => $contrasena);
 		$this->update($data, 'id = '. (int)$id);
 	}
 	
-	public function eliminarPersona($id){
+	public function borrarPersona($id){
 		$this->delete('id =' . (int)$id);
 	}	
 

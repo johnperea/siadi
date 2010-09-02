@@ -1,14 +1,23 @@
 <?php
 class Form_Persona extends Zend_Form{
 
+	private $decoratorUser = array();
+	
+	
 	public function __construct($options = null){
 		parent::__construct($options);
 		
 		$this->setName('persona');
+		$this->decoratorUser = array(
+            'ViewHelper',
+            'Errors',
+            array('ViewScript', array('viewScript' => '/decorators/decoratorUser.phtml', 'placement' => false)),);
+     
 		
 		$id = new Zend_Form_Element_Text('id');
 		$id->setLabel('Numero Identificacion')
 		->setRequired(true)
+		//->setDecorators($this->decoratorUser)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
 		->addValidator('NotEmpty');
@@ -39,12 +48,10 @@ class Form_Persona extends Zend_Form{
 		->addFilter('StringTrim')
 		->addValidator('NotEmpty');
 				
-		$sexo = new Zend_Form_Element_Text('sexo');
+		$sexo = new Zend_Form_Element_Select('sexo');
 		$sexo->setLabel('Sexo')
-		->setRequired(true)
-		->addFilter('StripTags')
-		->addFilter('StringTrim')
-		->addValidator('NotEmpty');
+		->setmultioptions(array('M' =>'Masculino', 'F'=>'Femenino'))
+		->setRequired(true);
 		
 		$edad = new Zend_Form_Element_Text('edad');
 		$edad->setLabel('Edad')
@@ -98,9 +105,8 @@ class Form_Persona extends Zend_Form{
 		$submit = new Zend_Form_Element_Submit('submit');
 		$submit->setAttrib('id', 'submitbutton');
 		
-		$cancel = new Zend_Form_Element_Button('Cancel');
 		
-		$this->addElements(array($id, $tipoId, $rol, $nombre, $apellidos, $sexo, $edad, $direccion, $ciudad, $telefono, $correo, $usuario, $contrasena, $submit, $cancel));
+		$this->addElements(array($id, $tipoId, $rol, $nombre, $apellidos, $sexo, $edad, $direccion, $ciudad, $telefono, $correo, $usuario, $contrasena, $submit));
 	}
 }
 ?>

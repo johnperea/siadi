@@ -1,21 +1,10 @@
-<p><a href="<?php echo $this->url(array('controller'=>'persona','action'=>'anyadir'));?>">A&ntilde;adir nuevo persona</a></p>
-<table>
-	<tr>
-		<th>Nombre</th>
-		<th>Apellido</th>
-		<th>Correo</th>
-		<th>Usuario</th>
-	</tr>
-	<?php foreach($this->persona as $persona) : ?>
-	<tr>		
-		<td><?php echo htmlentities($this->escape($persona->nombre)) ;?></td>
-		<td><?php echo htmlentities($this->escape($persona->apellidos)); ?></td>
-		<td><?php echo htmlentities($this->escape($persona->correo)); ?></td>
-		<td><?php echo htmlentities($this->escape($persona->usuario)); ?></td>
-		<td>
-			<a href="<?php echo $this->url(array('controller'=>'persona', 'action'=>'editar', 'id'=>$persona->id));?>">Editar</a>
-			<a href="<?php echo $this->url(array('controller'=>'persona',	'action'=>'borrar', 'id'=>$persona->id));?>">Borrar</a>
-		</td>
-	</tr>
-	<?php endforeach; ?>
-</table>
+<style>
+    a:link,
+    a:visited
+    {
+        color: #0398CA;
+    }
+
+</style>
+<?php echo $this->form ;?>
+

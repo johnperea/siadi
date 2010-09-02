@@ -1,13 +1,14 @@
-<p><a href="<?php echo $this->url(array('controller'=>'persona','action'=>'anyadir'));?>">A&ntilde;adir nuevo persona</a></p>
-<table>
+<p><a href="<?php echo $this->url(array('controller'=>'persona','action'=>'agregar'));?>">A&ntilde;adir nuevo persona</a></p>
+<table border="1" align="center"  width="100%" align="center" bordercolor="#999999" cellspacing="0">
 	<tr>
 		<th>Nombre</th>
 		<th>Apellido</th>
 		<th>Correo</th>
 		<th>Usuario</th>
+		<th>Acciones</th>
 	</tr>
 	<?php foreach($this->persona as $persona) : ?>
-	<tr>		
+	<tr align="center">		
 		<td><?php echo htmlentities($this->escape($persona->nombre)) ;?></td>
 		<td><?php echo htmlentities($this->escape($persona->apellidos)); ?></td>
 		<td><?php echo htmlentities($this->escape($persona->correo)); ?></td>
