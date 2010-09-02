@@ -1,0 +1,33 @@
+<p><a href="<?php echo $this->url(array('controller'=>'practica','action'=>'agregar'));?>">A&ntilde;adir nuevo practica</a></p>
+<table border="1" align="center" width="100%" align="center" bordercolor="#999999" cellspacing="0">
+	<tr>
+		<th>Año</th>
+		<th>Periodo</th>
+		<th>Pais Origen</th>
+		<th>Inst. Origen</th>
+		<th>Pais Destino</th>
+		<th>Inst. Destino</th>
+		<th>Duracion(Meses)</th>
+		<th>Pago(USD)</th>
+		<th>Acciones</th>
+		
+	</tr>
+	<?php foreach($this->practica as $practica) : ?>
+	<tr align="center">		
+		<td><?php echo htmlentities($this->escape($practica->ano)) ;?></td>
+		<td><?php echo htmlentities($this->escape($practica->periodo)); ?></td>
+		
+		<td><?php echo htmlentities($this->escape($practica->pais_origen)); ?></td>
+		<td><?php echo htmlentities($this->escape($practica->institucion_origen)); ?></td>
+		<td><?php echo htmlentities($this->escape($practica->pais_destino)); ?></td>
+		<td><?php echo htmlentities($this->escape($practica->institucion_destino)); ?></td>
+		<td><?php echo htmlentities($this->escape($practica->duracion)); ?></td>
+		
+		<td><?php echo htmlentities($this->escape($practica->cantidad)); ?></td>
+		<td>
+			<a href="<?php echo $this->url(array('controller'=>'practica', 'action'=>'editar', 'id'=>$practica->id));?>">Editar</a>
+			<a href="<?php echo $this->url(array('controller'=>'practica',	'action'=>'borrar', 'id'=>$practica->id));?>">Borrar</a>
+		</td>
+	</tr>
+	<?php endforeach; ?>
+</table>

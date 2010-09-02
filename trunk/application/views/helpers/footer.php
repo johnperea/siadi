@@ -21,9 +21,23 @@ class Zend_View_Helper_footer {
 	/**
 	 * 
 	 */
-	public function footer() {
+	public function footer($base) {
 		// TODO Auto-generated Zend_View_Helper_footer::footer() helper 
-		echo "<h1>PIECERA</h1>";
+		$html = "
+		<div align='center'>Desarrollado por:<br>
+          <img width='422px' height='78px' border='0px' align='top' src='";
+		
+		$html = $html.$base;
+		
+		$html = $html."
+		/image/ing_softbanner.png'><br>
+		<img src='http://framework.zend.com/images/PoweredBy_ZF_4LightBG.png' />
+		<br>
+         VERSION BETA 
+         </div>
+		";
+		
+		echo $html;
 		return null;
 	}
 	

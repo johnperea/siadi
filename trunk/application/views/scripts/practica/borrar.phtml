@@ -1,0 +1,11 @@
+<p>¿Estás seguro que quieres borrar la practica
+'<?php echo $this->escape($this->Practica['pais_destino']); ?>' por 
+'<?php echo $this->escape($this->Practica['institucion_destino']); ?>'?
+</p>
+<form action="<?php echo $this->url(array('action'=>'borrar')); ?>" method="post">
+	<div>
+		<input type="hidden" name="id" value="<?php echo $this->Practica['id']; ?>" />
+		<input type="submit" name="del" value="Si" />
+		<input type="submit" name="del" value="No" />
+	</div>
+</form>

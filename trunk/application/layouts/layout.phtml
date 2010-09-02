@@ -3,18 +3,23 @@
 	<head>
 		<?php echo $this->headMeta()."\n"; ?>
 		<?php echo $this->headTitle()."\n"; ?>		
-		<?php echo $this->headLink()->prependStylesheet($this->baseUrl()."/css/biblioteca.css")."\n"; ?>
+		<?php echo $this->headLink()->prependStylesheet($this->baseUrl()."/css/Main.css")."\n"; ?>
 	</head>
-	<body>
-		<div id="header">
-		<?php echo $this->header()?>
-		</div>
-		<div id="content">
-			<h1><?php echo $this->escape($this->title); ?></h1>
-			<?php echo $this->layout()->content; ?>
-		</div>
-		<div id="footer">
-		<?php echo $this->footer()?>
+	<body background="<?php echo $this->baseUrl()."/image/bg.gif"?>" >
+		<div class="frame">
+			<div id="header">
+			<?php echo $this->header($this->baseUrl())?>
+			</div>
+			<div id="menuBar">
+			<?php echo $this->menuBar($this->baseUrl())?>
+			</div>
+			<div id="content">
+				<h1><?php echo $this->escape($this->title); ?></h1>
+				<?php echo $this->layout()->content; ?>
+			</div>
+			<div id="footer">
+			<?php echo $this->footer($this->baseUrl())?>
+			</div>
 		</div>
 	</body>
 </html>

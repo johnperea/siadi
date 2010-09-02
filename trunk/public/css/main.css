@@ -1,0 +1,56 @@
+.frame {
+	height:800px;
+	margin:0 auto;
+	width:942px;
+	
+}
+
+.cabecera {
+	height: 200px;
+	width: auto;
+}
+#content {
+	
+	border: 2px ridge #0B3DEA;
+	height: auto;
+	min-height:400px;
+	height:auto;
+	width:898px;
+	padding:20px;
+	background: #d4d4d4;
+}
+
+#footer {
+	
+	font-size:14px;
+	font-weight:bold;
+}
+body{
+	
+	font-family:Verdana;
+	font-size:14px;
+	margin:auto;
+	width:950px;
+}
+
+div#menuBar {
+		background-image:url(http://beneficiosbienestar.unimagdalena.edu.co/images/back2.png);
+		background-repeat:repeat-x;
+		height:32px;
+		position:relative;
+		vertical-align:middle;
+		width:100%;
+	}
+
+h1{
+	text-align: center;
+	color: #000000;
+}
+
+a.menulink {
+color:white;
+height:10px;
+padding:10px;
+text-decoration:none;
+width:30px;
+}

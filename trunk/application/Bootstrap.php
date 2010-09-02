@@ -14,9 +14,9 @@ protected function _initAutoload(){
 		$layout = $this->getResource('layout');
 		$view = $layout->getView();
 		$view->doctype('XHTML1_STRICT');
-		$view->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+		$view->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=iso-8859-1');
 		$view->headTitle()->setSeparator(' - ');
-		$view->headTitle('Biblioteca');
+		$view->headTitle('.: SIADI :.');
 	}
 	
 }
