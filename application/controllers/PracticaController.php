@@ -32,7 +32,7 @@ class PracticaController extends Zend_Controller_Action {
 		//Instanciamos el formulario
 		$form = new Form_Practica();
 		//Especificamos el nombre del botón de envío del formulario
-		$form->submit->setLabel('Enviar');
+		$form->submit->setLabel('Agregar');
 		//Asignamos a la vista el formulario
 		$this->view->form = $form;
 
@@ -64,7 +64,7 @@ class PracticaController extends Zend_Controller_Action {
 				$Practicas->insertarPractica('', $idPersona, $ano, $periodo, $semestre, $pais_origen, $institucion_origen, $pais_destino, $institucion_destino, $duracion, $facultad_dependencia, $programa, $remuneracion, $cantidad );
 				
 				//Redireccionamos a la home, donde podremos ver el nuevo Persona introducido.
-				$this->_redirect('/');
+				return $this->_forward('index');
 			}else{ //Si los datos del formulario, no son válidos, se muestra el formulario con los datos de nuevo.
 				$form->populate($formData);
 			}
@@ -79,7 +79,7 @@ class PracticaController extends Zend_Controller_Action {
 		//Instanciamos el formulario
 		$form = new Form_Practica();
 		//Especificamos el nombre del botón de envío del formulario
-		$form->submit->setLabel('Guardar');
+		$form->submit->setLabel('Editar');
 		//Asignamos a la vista el formulario
 		$this->view->form = $form;
 		
@@ -113,13 +113,13 @@ class PracticaController extends Zend_Controller_Action {
 				$Practicas->modificarPractica($id, $idPersona, $ano, $periodo, $semestre, $pais_origen, $institucion_origen, $pais_destino, $institucion_destino, $duracion, $facultad_dependencia, $programa, $remuneracion, $cantidad );
 				
 				//Vamos a la página principal de la aplicación
-				$this->view->_redirect();
-				$this_redirect();
+				return $this->_forward('index');
+				
 			}else{//Si los datos del formulario, no son válidos, se muestra el formulario con los datos de nuevo.
 				$form->populate($formData);
 			}
 		}else{//Mostramos los datos del Persona en caso de no haber enviado los datos al servidor para actualizar el Persona
-			$id = $this->_getParam('id', 0);
+			$id = $this->_getParam('id');
 			if ($id > 0) {
 				$albums = new Model_DbTable_Practicas();
 				$form->populate($albums->obtenerPractica($id));
@@ -137,9 +137,9 @@ class PracticaController extends Zend_Controller_Action {
 				$Practicas = new Model_DbTable_Practicas();
 				$Practicas->removerPractica($id);
 			}
-			$this->_redirect('/');
+			return $this->_forward('index');
 		}else{
-			$id = $this->_getParam('id', 0);
+			$id = $this->_getParam('id');
 			$Practicas = new Model_DbTable_Practicas();
 			$this->view->Practica = $Practicas->obtenerPractica($id);
 		}		

@@ -39,5 +39,13 @@ class Model_DBTable_Personas extends Zend_Db_Table_Abstract {
 		$this->delete('id =' . (int)$id);
 	}	
 
+	public function usuarioPersona($usuario){
+		//$id = (int)$id;
+		$row = $this->fetchRow('usuario = ' . $usuario);
+		if (!$row){
+			throw new Exception("Count not find row $id");
+		}
+		return $row->toArray();
+	}
 }
 

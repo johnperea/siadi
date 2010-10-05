@@ -5,7 +5,6 @@ public function __construct($options = null){
 		parent::__construct($options);
 		
 		$this->setName('practica');
-		
 		$id = new Zend_Form_Element_Hidden('id'); 
 		
 		$idPersona = new Zend_Form_Element_Text('idPersona');
