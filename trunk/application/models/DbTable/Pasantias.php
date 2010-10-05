@@ -11,7 +11,7 @@ require_once 'Zend/Db/Table/Abstract.php';
 
 class Model_DBTable_Pasantias extends Zend_Db_Table_Abstract {
 	/**
-	 * The default table name 
+	 * The default table Pasantias
 	 */
 	protected $_name = 'pasantias';
 	protected $_primary = 'id';

@@ -15,7 +15,7 @@ class Form_Pasantia extends Zend_Form{
 		->addValidator('NotEmpty');
 		
 		$ano = new Zend_Form_Element_Text('ano');
-		$ano->setLabel('Año')
+		$ano->setLabel('Ano')
 		->setRequired(true)
 		->addFilter('StripTags')
 		->addFilter('StringTrim')
@@ -570,9 +570,8 @@ class Form_Pasantia extends Zend_Form{
 		$submit = new Zend_Form_Element_Submit('submit');
 		$submit->setAttrib('id', 'submitbutton');
 		
-		$cancel = new Zend_Form_Element_Button('Cancel');
 		
-		$this->addElements(array($id, $idPersona, $ano, $periodo, $semestre, $pais_origen, $institucion_origen, $pais_destino, $institucion_destino, $duracion, $facultad_dependencia, $programa));
+		$this->addElements(array($id, $idPersona, $ano, $periodo, $semestre, $pais_origen, $institucion_origen, $pais_destino, $institucion_destino, $duracion, $facultad_dependencia, $programa, $submit));
 	}
 }
 ?>

@@ -23,9 +23,9 @@ class Form_LoginUsuario extends Zend_Form{
 		$submit = new Zend_Form_Element_Submit('submit');
 		$submit->setAttrib('id', 'submitbutton');
 		
-		$cancel = new Zend_Form_Element_Button('Cancel');
+		//$cancel = new Zend_Form_Element_Button('Cancel');
 		
-		$this->addElements(array( $usuario, $contrasena, $submit, $cancel));
+		$this->addElements(array( $usuario, $contrasena, $submit));
 		
 		$this->setDecorators(array('FormElements',
 			array('HtmlTag', array('tag' => 'dl', 'class' => 'zend_form')),

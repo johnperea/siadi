@@ -26,13 +26,13 @@ class PasantiaController extends Zend_Controller_Action {
 	
 	public function agregarAction(){
 		//Indicamos el título de la página
-		$this->view->title = "Añadir nueva Pasantia";
+		$this->view->title = "Nueva Pasantia";
 		//Añadimos el título, delante del título definido por defecto para nuestra aplicación
 		$this->view->headTitle($this->view->title, 'PREPEND');
 		//Instanciamos el formulario
 		$form = new Form_Pasantia();
 		//Especificamos el nombre del botón de envío del formulario
-		$form->submit->setLabel('Añadir');
+		$form->submit->setLabel('Agregar');
 		//Asignamos a la vista el formulario
 		$this->view->form = $form;
 
@@ -45,7 +45,7 @@ class PasantiaController extends Zend_Controller_Action {
 				$id = $form->getValue('id');
 				$idPersona = $form->getValue('idPersona');
 				$ano = $form->getValue('ano');
-				$periodo = $form->getValue('contrasena');
+				$periodo = $form->getValue('periodo');
 				$semestre = $form->getValue('semestre');
 				
 				$pais_origen = $form->getValue('pais_origen');
@@ -62,7 +62,8 @@ class PasantiaController extends Zend_Controller_Action {
 				//Insertamos el nuevo Persona en nuestra BBDD
 				$pasantias->insertarPasantia($id, $idPersona, $ano, $periodo, $semestre, $pais_origen, $institucion_origen, $pais_destino, $institucion_destino, $duracion, $facultad_dependencia, $programa );
 		//Redireccionamos a la home, donde podremos ver el nuevo Persona introducido.
-				$this->_redirect('/');
+				return $this->_forward('index');
+				
 			}else{ //Si los datos del formulario, no son válidos, se muestra el formulario con los datos de nuevo.
 				$form->populate($formData);
 			}
@@ -77,7 +78,7 @@ class PasantiaController extends Zend_Controller_Action {
 		//Instanciamos el formulario
 		$form = new Form_Pasantia();
 		//Especificamos el nombre del botón de envío del formulario
-		$form->submit->setLabel('Guardar');
+		$form->submit->setLabel('Editar');
 		//Asignamos a la vista el formulario
 		$this->view->form = $form;
 		
@@ -90,7 +91,7 @@ class PasantiaController extends Zend_Controller_Action {
 				$id = $form->getValue('id');
 				$idPersona = $form->getValue('idPersona');
 				$ano = $form->getValue('ano');
-				$periodo = $form->getValue('contrasena');
+				$periodo = $form->getValue('periodo');
 				$semestre = $form->getValue('semestre');
 				
 				$pais_origen = $form->getValue('pais_origen');
@@ -108,15 +109,16 @@ class PasantiaController extends Zend_Controller_Action {
 				$pasantias->modificarPasantia($id, $idPersona, $periodo, $semestre, $pais_origen, $institucion_origen, $pais_destino, $institucion_destino, $duracion, $facultad_dependencia );
 				
 				//Vamos a la página principal de la aplicación
-				$this->_redirect();
+				return $this->_forward('index');
+				
 			}else{//Si los datos del formulario, no son válidos, se muestra el formulario con los datos de nuevo.
 				$form->populate($formData);
 			}
 		}else{//Mostramos los datos del Persona en caso de no haber enviado los datos al servidor para actualizar el Persona
-			$id = $this->_getParam('id', 0);
+			$id = $this->_getParam('id');
 			if ($id > 0) {
-				$albums = new Model_DbTable_Pasantias();
-				$form->populate($albums->obtenerPasantia($id));
+				$pasantias = new Model_DbTable_Pasantias();
+				$form->populate($pasantias->obtenerPasantia($id));
 			}
 		}
 	}
@@ -131,13 +133,24 @@ class PasantiaController extends Zend_Controller_Action {
 				$pasantias = new Model_DbTable_Pasantias();
 				$pasantias->removerPasantia($id);
 			}
-			$this->_redirect('/');
+			return $this->_forward('index');
 		}else{
-			$id = $this->_getParam('id', 0);
+			$id = $this->_getParam('id');
 			$pasantias = new Model_DbTable_pasantias();
 			$this->view->Pasantia = $pasantias->obtenerPasantia($id);
 		}		
 	}
+	
+	public function verAction(){
+			$id = $this->getRequest()->getPost('id');
+			if ($id > 0) {
+				$pasantias = new Model_DbTable_Pasantias();
+				$this->view->Pasantia = $pasantias->obtenerPasantia($id);
+			}
+	}
+	public function agregar_beneficioAction(){}
+	public function eliminar_beneficioAction(){}
+	
 	
 }
 

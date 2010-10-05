@@ -29,6 +29,7 @@ class Zend_View_Helper_MenuBar {
 		echo "<a class='menulink' href='".$base."/persona/'>PERSONAS</a>";
 		echo "<a class='menulink' href='".$base."/practica/'>PRACTICAS</a>";
 		echo "<a class='menulink' href='".$base."/pasantia/'>PASANTIAS</a>";
+		echo "<a class='menulink' href='".$base."/beneficio/'>BENEFICIOS</a>";
 		
 		
 		return null;

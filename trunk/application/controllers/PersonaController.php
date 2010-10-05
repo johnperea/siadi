@@ -32,7 +32,7 @@ class PersonaController extends Zend_Controller_Action {
 		//Instanciamos el formulario
 		$form = new Form_Persona();
 		//Especificamos el nombre del botón de envío del formulario
-		$form->submit->setLabel('Añadir');
+		$form->submit->setLabel('Agregar');
 		
 		
 		//Asignamos a la vista el formulario
@@ -60,7 +60,8 @@ class PersonaController extends Zend_Controller_Action {
 				//Insertamos el nuevo Persona en nuestra BBDD
 				$Personas->agregarPersona($id, $tipoId, $rol, $nombre, $apellidos, $sexo, $edad, $direccion, $ciudad , $telefono , $correo, $usuario, $contrasena );
 				//Redireccionamos a la home, donde podremos ver el nuevo Persona introducido.
-				$this->_redirect('/');
+				
+				return $this->_forward('index');
 			}else{ //Si los datos del formulario, no son válidos, se muestra el formulario con los datos de nuevo.
 				$form->populate($formData);
 			}
@@ -75,7 +76,8 @@ class PersonaController extends Zend_Controller_Action {
 		//Instanciamos el formulario
 		$form = new Form_Persona();
 		//Especificamos el nombre del botón de envío del formulario
-		$form->submit->setLabel('Guardar');
+		
+		$form->submit->setLabel('Editar');
 		//Asignamos a la vista el formulario
 		$this->view->form = $form;
 		
@@ -97,21 +99,22 @@ class PersonaController extends Zend_Controller_Action {
 				$correo = $form->getValue('correo');
 				$usuario = $form->getValue('usuario');
 				$contrasena = $form->getValue('contrasena');
-				//Creamos el modelo
+				
 				$Personas = new Model_DbTable_Personas();
-				//Insertamos el nuevo Persona en nuestra BBDD
+				
+				
 				$Personas->editarPersona($id, $tipoId, $rol, $nombre, $apellidos, $sexo, $edad, $direccion, $ciudad , $telefono , $correo, $usuario, $contrasena );
 				
-				//Vamos a la página principal de la aplicación
-				$this->_redirect();
+				return $this->_forward('index');
+				
 			}else{//Si los datos del formulario, no son válidos, se muestra el formulario con los datos de nuevo.
 				$form->populate($formData);
 			}
 		}else{//Mostramos los datos del Persona en caso de no haber enviado los datos al servidor para actualizar el Persona
-			$id = $this->_getParam('id', 0);
+			$id = $this->_getParam('id');
 			if ($id > 0) {
-				$albums = new Model_DbTable_Personas();
-				$form->populate($albums->obtenerPersona($id));
+				$Personas = new Model_DbTable_Personas();
+				$form->populate($Personas->obtenerPersona($id));
 			}
 		}
 	}
@@ -126,9 +129,10 @@ class PersonaController extends Zend_Controller_Action {
 				$Personas = new Model_DbTable_Personas();
 				$Personas->borrarPersona($id);
 			}
-			$this->_redirect('/');
+			
+			return $this->_forward('index');
 		}else{
-			$id = $this->_getParam('id', 0);
+			$id = $this->_getParam('id');
 			$Personas = new Model_DbTable_Personas();
 			$this->view->persona = $Personas->obtenerPersona($id);
 		}		

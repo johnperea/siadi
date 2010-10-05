@@ -75,11 +75,7 @@ class Form_Persona extends Zend_Form{
 		->addValidator('NotEmpty');
 		
 		$telefono = new Zend_Form_Element_Text('telefono');
-		$telefono->setLabel('telefono')
-		->setRequired(true)
-		->addFilter('StripTags')
-		->addFilter('StringTrim')
-		->addValidator('NotEmpty');
+		$telefono->setLabel('telefono');
 		
 		$correo = new Zend_Form_Element_Text('correo');
 		$correo->setLabel('correo')
@@ -89,18 +85,12 @@ class Form_Persona extends Zend_Form{
 		->addValidator('NotEmpty');
 		
 		$usuario = new Zend_Form_Element_Text('usuario');
-		$usuario->setLabel('usuario')
-		->setRequired(true)
-		->addFilter('StripTags')
-		->addFilter('StringTrim')
-		->addValidator('NotEmpty');
+		$usuario->setLabel('usuario');
+		
 		
 		$contrasena = new Zend_Form_Element_Text('contrasena');
-		$contrasena->setLabel('contrasena')
-		->setRequired(true)
-		->addFilter('StripTags')
-		->addFilter('StringTrim')
-		->addValidator('NotEmpty');
+		$contrasena->setLabel('contrasena');
+		
 		
 		$submit = new Zend_Form_Element_Submit('submit');
 		$submit->setAttrib('id', 'submitbutton');

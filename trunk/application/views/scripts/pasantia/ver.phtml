@@ -1,4 +1,4 @@
-<p><a href="<?php echo $this->url(array('controller'=>'pasantia','action'=>'agregar'));?>">A&ntilde;adir nuevo pasantia</a></p>
+
 <table border="1" align="center"  width="100%" align="center" bordercolor="#999999" cellspacing="0">
 	<tr>
 		<th>Ano</th>
@@ -25,7 +25,6 @@
 		<td>
 			<a href="<?php echo $this->url(array('controller'=>'pasantia', 'action'=>'editar', 'id'=>$pasantia->id));?>">Editar</a>
 			<a href="<?php echo $this->url(array('controller'=>'pasantia',	'action'=>'borrar', 'id'=>$pasantia->id));?>">Borrar</a>
-			<a href="<?php echo $this->url(array('controller'=>'pasantia',	'action'=>'ver', 'id'=>$pasantia->id));?>">Detalles</a>
 		</td>
 	</tr>
 	<?php endforeach; ?>

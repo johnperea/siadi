@@ -26,13 +26,13 @@ class BeneficioController extends Zend_Controller_Action {
 	
 	public function agregarAction(){
 		//Indicamos el título de la página
-		$this->view->title = "Añadir nueva Beneficio";
+		$this->view->title = "Nuevo Beneficio";
 		//Añadimos el título, delante del título definido por defecto para nuestra aplicación
 		$this->view->headTitle($this->view->title, 'PREPEND');
 		//Instanciamos el formulario
 		$form = new Form_Beneficio();
 		//Especificamos el nombre del botón de envío del formulario
-		$form->submit->setLabel('Añadir');
+		$form->submit->setLabel('Agregar');
 		//Asignamos a la vista el formulario
 		$this->view->form = $form;
 
@@ -52,7 +52,8 @@ class BeneficioController extends Zend_Controller_Action {
 				//Insertamos el nuevo Persona en nuestra BBDD
 				$beneficios->insertarBeneficio($id, $nombre );
 		//Redireccionamos a la home, donde podremos ver el nuevo Persona introducido.
-				$this->_redirect('/');
+				return $this->_forward('index');
+				
 			}else{ //Si los datos del formulario, no son válidos, se muestra el formulario con los datos de nuevo.
 				$form->populate($formData);
 			}
@@ -67,7 +68,7 @@ class BeneficioController extends Zend_Controller_Action {
 		//Instanciamos el formulario
 		$form = new Form_Beneficio();
 		//Especificamos el nombre del botón de envío del formulario
-		$form->submit->setLabel('Guardar');
+		$form->submit->setLabel('Editar');
 		//Asignamos a la vista el formulario
 		$this->view->form = $form;
 		
@@ -78,32 +79,21 @@ class BeneficioController extends Zend_Controller_Action {
 				
 				
 				$id = $form->getValue('id');
-				$idPersona = $form->getValue('idPersona');
-				$ano = $form->getValue('ano');
-				$periodo = $form->getValue('contrasena');
-				$semestre = $form->getValue('semestre');
-				
-				$pais_origen = $form->getValue('pais_origen');
-				$institucion_origen = $form->getValue('institucion_origen');
-				$pais_destino = $form->getValue('pais_destino');
-				$institucion_destino = $form->getValue('institucion_destino');
-				$duracion = $form->getValue('duracion');
-				
-				$facultad_dependencia = $form->getValue('facultad_dependencia');
-				$programa = $form->getValue('programa');
+				$nombre = $form->getValue('nombre');
 				
 				//Creamos el modelo
 				$beneficios = new Model_DbTable_Beneficios();
 				//Insertamos el nuevo Persona en nuestra BBDD
-				$beneficios->modificarBeneficio($id, $idPersona, $periodo, $semestre, $pais_origen, $institucion_origen, $pais_destino, $institucion_destino, $duracion, $facultad_dependencia );
+				$beneficios->modificarBeneficio($id, $nombre );
 				
 				//Vamos a la página principal de la aplicación
-				$this->_redirect('/');
+				return $this->_forward('index');
+				
 			}else{//Si los datos del formulario, no son válidos, se muestra el formulario con los datos de nuevo.
 				$form->populate($formData);
 			}
 		}else{//Mostramos los datos del Persona en caso de no haber enviado los datos al servidor para actualizar el Persona
-			$id = $this->_getParam('id', 0);
+			$id = $this->_getParam('id');
 			if ($id > 0) {
 				$albums = new Model_DbTable_Beneficios();
 				$form->populate($albums->obtenerBeneficio($id));
@@ -121,9 +111,9 @@ class BeneficioController extends Zend_Controller_Action {
 				$beneficios = new Model_DbTable_Beneficios();
 				$beneficios->removerBeneficio($id);
 			}
-			$this->_redirect('/');
+			return $this->_forward('index');
 		}else{
-			$id = $this->_getParam('id', 0);
+			$id = $this->_getParam('id');
 			$beneficios = new Model_DbTable_Beneficios();
 			$this->view->Beneficio = $beneficios->obtenerBeneficio($id);
 		}		

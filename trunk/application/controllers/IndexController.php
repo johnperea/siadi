@@ -17,6 +17,7 @@ class IndexController extends Zend_Controller_Action
 			$form = new Form_LoginUsuario();
 			//Especificamos el nombre del botón de envío del formulario
 			$form->submit->setLabel('Entrar');
+			$form->setAction('index');
 			//Asignamos a la vista el formulario
 			$this->view->form = $form;
 	
@@ -26,7 +27,7 @@ class IndexController extends Zend_Controller_Action
 					//Asignamos los valores recuperados a variables
 					
 					
-					
+					$this->view->mensaje = "Error login";
 					
 					
 					
@@ -35,15 +36,41 @@ class IndexController extends Zend_Controller_Action
 					$usuario = $form->getValue('usuario');
 					$contrasena = $form->getValue('contrasena');
 					
+					$Personas = new Model_DbTable_Personas();
+					$sujeto = $Personas->usuarioPersona($usuario);
+					
+					
+					if($sujeto['usuario'] == $usuario && $sujeto['contrasena'] == $contrasena){
+					
+						return $this->_forward('/persona');
+					
+					}
+					else{
+						$this->view->mensaje = "Error login";
+						return $this->_forward('index');
+					}
+					
+					
+					
+					
+					
+					
+					
+					
 					//$Personas = new Model_DbTable_Personas();
 					//Insertamos el nuevo Persona en nuestra BBDD
 					//$Personas->addPersona($id, $tipoId, $rol, $nombre, $apellidos, $sexo, $edad, $direccion, $ciudad , $telefono , $correo, $usuario, $contrasena );
 					//Redireccionamos a la home, donde podremos ver el nuevo Persona introducido.
-					$this->_redirect('/');
+					//$this->_redirect('/');
 				}else{ //Si los datos del formulario, no son válidos, se muestra el formulario con los datos de nuevo.
 					$form->populate($formData);
 				}
 			} // action body
+			else{
+			
+			
+			}
+			//
     }
 
 
