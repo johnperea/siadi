@@ -17,7 +17,7 @@ class IndexController extends Zend_Controller_Action
 			$form = new Form_LoginUsuario();
 			//Especificamos el nombre del botón de envío del formulario
 			$form->submit->setLabel('Entrar');
-			$form->setAction('index');
+			//$form->setAction('/persona/');
 			//Asignamos a la vista el formulario
 			$this->view->form = $form;
 	
@@ -30,7 +30,9 @@ class IndexController extends Zend_Controller_Action
 					$this->view->mensaje = "Error login";
 					
 					
-					
+					?>
+					JOHN
+					<?php
 					
 					
 					$usuario = $form->getValue('usuario');
@@ -42,12 +44,12 @@ class IndexController extends Zend_Controller_Action
 					
 					if($sujeto['usuario'] == $usuario && $sujeto['contrasena'] == $contrasena){
 					
-						return $this->_forward('/persona');
+						return $this->_forward('/persona/');
 					
 					}
 					else{
 						$this->view->mensaje = "Error login";
-						return $this->_forward('index');
+						return $this->_forward('/persona/');
 					}
 					
 					

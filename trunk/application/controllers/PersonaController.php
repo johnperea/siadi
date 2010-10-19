@@ -31,6 +31,7 @@ class PersonaController extends Zend_Controller_Action {
 		$this->view->headTitle($this->view->title, 'PREPEND');
 		//Instanciamos el formulario
 		$form = new Form_Persona();
+		ZendX_JQuery::enableForm($form);
 		//Especificamos el nombre del botón de envío del formulario
 		$form->submit->setLabel('Agregar');
 		

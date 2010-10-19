@@ -4,6 +4,11 @@
 		<?php echo $this->headMeta()."\n"; ?>
 		<?php echo $this->headTitle()."\n"; ?>		
 		<?php echo $this->headLink()->prependStylesheet($this->baseUrl()."/css/Main.css")."\n"; ?>
+		<?php echo $this->jQuery()->addStylesheet($this->baseUrl(). "/css/jquery-ui-1.8.5.custom.css")
+								  ->setLocalPath($this->baseUrl(). "/js/jquery-1.4.2.min.js")
+								  ->setUiLocalPath($this->baseUrl()."/js/jquery-ui-1.8.5.custom.min.js")
+								  ->enable()
+								  ->uiEnable();?>
 	</head>
 	<body background="<?php echo $this->baseUrl()."/image/bg.gif"?>" >
 		<div class="frame">

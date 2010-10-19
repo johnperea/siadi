@@ -1,0 +1,21 @@
+<p><a href="<?php echo $this->url(array('controller'=>'pasantia','action'=>'agregar'));?>">A&ntilde;adir nuevo pasantia</a></p>
+<table border="1" align="center"  width="100%" align="center" bordercolor="#999999" cellspacing="0">
+	<tr>
+		<th>Ano</th>
+		<th>Periodo</th>
+		
+		<th>Acciones</th>
+		
+	</tr>
+	<?php foreach($this->beneficio as $beneficio) : ?>
+	<tr align="center">		
+		<td><?php echo htmlentities($this->escape($beneficio->id_beneficio)) ;?></td>
+		<td><?php echo htmlentities($this->escape($beneficio->cantidad)); ?></td>
+		<td>
+			<a href="<?php echo $this->url(array('controller'=>'pasantia', 'action'=>'agregar_beneficio', 'id_pasantia'=>$this->pasantia['id'], 'id_beneficio'=>$beneficios->id));?>">Editar</a>
+			<a href="<?php echo $this->url(array('controller'=>'pasantia',	'action'=>'borrar_beneficio', 'id_pasantia'=>$this->pasantia['id'], 'id_beneficio'=>$beneficios->id));?>">Borrar</a>
+			
+		</td>
+	</tr>
+	<?php endforeach; ?>
+</table>

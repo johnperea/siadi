@@ -137,19 +137,27 @@ class PasantiaController extends Zend_Controller_Action {
 		}else{
 			$id = $this->_getParam('id');
 			$pasantias = new Model_DbTable_pasantias();
-			$this->view->Pasantia = $pasantias->obtenerPasantia($id);
+			$this->view->pasantia = $pasantias->obtenerPasantia($id);
 		}		
 	}
 	
 	public function verAction(){
-			$id = $this->getRequest()->getPost('id');
+			$id = $this->_getParam('id');
+			$this->view->number =  $id;
 			if ($id > 0) {
 				$pasantias = new Model_DbTable_Pasantias();
-				$this->view->Pasantia = $pasantias->obtenerPasantia($id);
+				$this->view->pasantia = $pasantias->obtenerPasantia($id);
+				
+				$id = (int)$id;
+			
+				$beneficios = new Model_DbTable_Beneficios();
+				//$this->view->pasantia = $pasantias->fetchAll();
+				//$this->view->beneficios = $beneficios->obtenerBeneficiosPasantia($id);
+				//$this->view->beneficio = $beneficios->obtenerBeneficio();
 			}
 	}
 	public function agregar_beneficioAction(){}
-	public function eliminar_beneficioAction(){}
+	public function borrar_beneficioAction(){}
 	
 	
 }
