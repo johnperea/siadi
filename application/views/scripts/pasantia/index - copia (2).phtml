@@ -1,0 +1,31 @@
+<p><a href="<?php echo $this->url(array('controller'=>'pasantia','action'=>'agregar'));?>">A&ntilde;adir nuevo pasantia</a></p>
+<table border="1" align="center"  width="100%" align="center" bordercolor="#999999" cellspacing="0">
+	<tr>
+		<th>Ano</th>
+		<th>Periodo</th>
+		<th>Semestre</th>
+		<th>Pais de Origen</th>
+		<th>Inst. de Origen</th>
+		<th>Pais Destino</th>
+		<th>Inst. Destino</th>
+		<th>Duracion</th>
+		<th>Acciones</th>
+		
+	</tr>
+	<?php foreach($this->pasantia as $pasantia) : ?>
+	<tr align="center">		
+		<td><?php echo htmlentities($this->escape($pasantia->ano)) ;?></td>
+		<td><?php echo htmlentities($this->escape($pasantia->periodo)); ?></td>
+		<td><?php echo htmlentities($this->escape($pasantia->semestre)); ?></td>
+		<td><?php echo htmlentities($this->escape($pasantia->pais_origen)); ?></td>
+		<td><?php echo htmlentities($this->escape($pasantia->institucion_origen)); ?></td>
+		<td><?php echo htmlentities($this->escape($pasantia->pais_destino)); ?></td>
+		<td><?php echo htmlentities($this->escape($pasantia->institucion_destino)); ?></td>
+		<td><?php echo htmlentities($this->escape($pasantia->duracion)); ?></td>
+		<td>
+			<a href="<?php echo $this->url(array('controller'=>'pasantia', 'action'=>'editar', 'id'=>$pasantia->id));?>">Editar</a>
+			<a href="<?php echo $this->url(array('controller'=>'pasantia',	'action'=>'borrar', 'id'=>$pasantia->id));?>">Borrar</a>
+		</td>
+	</tr>
+	<?php endforeach; ?>
+</table>
