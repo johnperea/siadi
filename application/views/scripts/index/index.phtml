@@ -7,5 +7,13 @@
 
 </style>
 <?php echo $this->mensaje ;?>
+<?php $this->jQuery()->addOnLoad('alert("Hola, Mundo.");'); ?>
+Pick your date:<?php echo $this->datePicker("dp1",
+                                             '',
+                                             array(
+                                                'defaultDate' =>
+                                                    date('Y/m/d', time())));?>
+
+
 <?php echo $this->form ;?>
 

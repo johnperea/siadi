@@ -24,7 +24,7 @@ class Model_DBTable_Pasantias extends Zend_Db_Table_Abstract {
 		}
 		return $row->toArray();
 	}
-	
+
 	public function insertarPasantia($id, $idPersona, $ano, $periodo, $semestre, $pais_origen, $institucion_origen, $pais_destino, $institucion_destino, $duracion, $faculdad_dependencia, $programa ){
 		$data = array('id' => $id, 'idPersona' => $idPersona, 'ano' => $ano, 'periodo' => $periodo, 'semestre' => $semestre, 'pais_origen' => $pais_origen, 'institucion_origen' => $institucion_origen, 'pais_destino' => $pais_destino, 'institucion_destino' => $institucion_destino, 'duracion' => $duracion, 'facultad_dependencia' => $faculdad_dependencia, 'programa' => $programa);
 		$this->insert($data);
