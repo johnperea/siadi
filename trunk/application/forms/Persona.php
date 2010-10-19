@@ -1,5 +1,5 @@
 <?php
-class Form_Persona extends Zend_Form{
+class Form_Persona extends ZendX_JQuery_Form{
 
 		public $elementsDecorators = array(
         'ViewHelper',
