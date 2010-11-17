@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * ProfesoresAdmon
+ * 
+ * @author john
+ * @version 
+ */
+
+require_once 'Zend/Db/Table/Abstract.php';
+
+class Model_DBTable_ProfesoresAdmon extends Zend_Db_Table_Abstract {
+	/**
+	 * The default table name 
+	 */
+	protected $_name = 'profesores';
+	
+	//protected $_dependentTables = array('Model_DBTable_Pasantias', 'Model_DBTable_Practicas','Model_DBTable_Beneficios','Model_DBTable_Convenios');
+	
+	protected $_referenceMap    = array(
+        'Persona' => array(
+            'columns'           => array('id_persona'),
+            'refTableClass'     => 'Model_DBTable_Persona',
+            'refColumns'        => array('id')
+        )
+    );
+    
+public function obtenerProfesorAdmon($id){
+		$id = (int)$id;
+		$row = $this->fetchRow('id = ' . $id);
+		if (!$row){
+			throw new Exception("Count not find row $id");
+		}
+		return $row->toArray();
+	}
+	
+	public function agregarProfesorAdmon($id, $id_persona, $ano_fin_estudio, $universidad, $titulo, $programa, $unidad, $ciudad, $pais_origen){
+		$data = array('id' => $id, 'id_persona' => $id_persona, 'ano_fin_estudio' => $ano_fin_estudio, 'universidad' => $universidad, 'titulo' => $titulo, 'programa' => $programa, 'unidad' => $unidad, 'ciudad' => $ciudad, 'pais_origen' => $pais_origen);
+		$this->insert($data);
+	}
+	
+	public function editarProfesorAdmon($id, $id_persona, $ano_fin_estudio, $universidad, $titulo, $programa, $unidad, $ciudad, $pais_origen){
+		$data = array('id' => $id, 'id_persona' => $id_persona, 'ano_fin_estudio' => $ano_fin_estudio, 'universidad' => $universidad, 'titulo' => $titulo, 'programa' => $programa, 'unidad' => $unidad, 'ciudad' => $ciudad, 'pais_origen' => $pais_origen);	
+		$this->update($data, 'id = '. (int)$id);
+	}
+	
+	public function borrarProfesorAdmon($id){
+		$this->delete('id =' . (int)$id);
+	}
+
+}
+
